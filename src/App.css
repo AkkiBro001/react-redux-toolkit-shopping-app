@@ -1,0 +1,102 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: #101010;
+  color: #ddd;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav{
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #252525;
+}
+
+nav ul{
+  display: flex;
+  gap: 2em;
+  font-size: 1.2rem;
+  list-style: none;
+}
+
+nav a{
+  text-decoration: none;
+  color: #ddd;
+  opacity: 0.6;
+}
+
+nav a:hover{
+  opacity: 1;
+}
+
+.container{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  padding: 2em;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.card{
+  flex-shrink: 0;
+  width: 300px;
+  background: #252525;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.card img{
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cardDetails{
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+.card button{
+  padding: 0.5em 1em;
+  background: #ddd;
+  color: #252525;
+  border: none;
+  font-weight: 700;
+  display: block  ;
+  margin: 0 auto 1em;
+  cursor: pointer;
+}
+
+.cartCard{
+  display: flex;
+  height: 150px;
+  background: #252525;
+  width: 100%;
+  align-items: center;
+  gap: 3em;
+  padding: 1em;
+  /* border: 1px solid #ddd; */
+  border-radius: 15px;
+}
+
+.cartCard img{
+  height: 100%;
+}
+
+.cartCard button{
+  margin-left: auto;
+  padding: 1em 2em;
+  cursor: pointer;
+}
+
