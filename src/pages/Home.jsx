@@ -1,14 +1,30 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Card from "../components/Card"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchProductsWithThunks } from "../store/ProductSilcer"
+import { STATUS } from "../store/ProductSilcer"
 
 function Home() {
-  const [products, setProducts] = useState([])
-   
+  const dispatch = useDispatch()
+  const {data: products, status} = useSelector(state => state.product) 
+  
   useEffect(()=>{
-    fetch("https://fakestoreapi.com/products/")
-    .then(result => result.json())
-    .then(data => setProducts(data))
+    dispatch(fetchProductsWithThunks())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if(status === STATUS.LOADING){
+    return (
+      <h1>Loading....</h1>
+    )
+  }
+
+
+  if(status === STATUS.ERROR){
+    return (
+      <h1>Somthing Went Wrong !!!!</h1>
+    )
+  }
 
   return (
     <div className="container">
