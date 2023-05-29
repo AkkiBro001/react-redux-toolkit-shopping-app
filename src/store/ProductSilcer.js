@@ -12,6 +12,20 @@ const ProductSilcer = createSlice({
         data: [],
         status: STATUS.IDEL
     },
+    reducers: {
+        incrementProductCartCounter(state, action){
+            state.data = state.data.map(product => product.id === action.payload ? {...product, cartCounter: product.cartCounter+1} : product)
+        },
+
+        decrementProductCartCounter(state, action){
+            state.data = state.data.map(product => product.id === action.payload ? {...product, cartCounter: product.cartCounter-1} : product)
+        },
+
+        resetCartProductCounter(state, action){
+            state.data = state.data.map(product => product.id === action.payload ? {...product, cartCounter: 0} : product)
+        }
+    }, 
+
     extraReducers: (builder) => {
         builder
         // eslint-disable-next-line no-unused-vars
@@ -29,14 +43,14 @@ const ProductSilcer = createSlice({
     }
 })
 
-export const {setProduct, setStatus} = ProductSilcer.actions;
+export const {setProduct, setStatus, incrementProductCartCounter, decrementProductCartCounter, resetCartProductCounter} = ProductSilcer.actions;
 export default ProductSilcer.reducer;
 
 //Normal Thunks
 export const fetchProductsWithThunks = createAsyncThunk("product/fetch", async function () {
     const result = await fetch("https://fakestoreapi.com/products/");
     const data = await result.json()
-    return data;
+    return data.map(item => ({...item, cartCounter: 0}));
 })
 
 

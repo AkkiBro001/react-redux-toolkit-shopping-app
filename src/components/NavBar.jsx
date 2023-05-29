@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 function NavBar() {
   const cartItems = useSelector(state => state.cart)
+  const counter = cartItems.length
   return (
     <nav>
         <h2>Redux Toolkit Store</h2>
@@ -13,7 +14,7 @@ function NavBar() {
         </ul>
         <span>
             {/* Here we use length (Array Length) of products to show how many products in cart. */}
-            Cart Items : {cartItems.length}
+            Cart Items : {counter}
         </span>
     </nav>
   )

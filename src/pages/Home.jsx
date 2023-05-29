@@ -26,7 +26,7 @@ function Home() {
       <h1>Somthing Went Wrong !!!!</h1>
     )
   }
-
+  
   return (
     <div className="container">
       {
