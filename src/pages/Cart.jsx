@@ -8,8 +8,9 @@ function Cart() {
 
     return (
       <section style={{display: "flex", flexWrap: "wrap", width: "80%", marginInline: "auto", padding: "2em", gap: "2em"}}>
-        {
-          cartItems.map(product => <CartCard key={product.id} {...product}/>)
+        {cartItems.length ?
+          cartItems.map(product => <CartCard key={product.id} {...product}/>) : 
+          <h2 style={{textAlign: "center", width: "100%"}}>Cart is empty !!</h2>
         }
         
       </section>

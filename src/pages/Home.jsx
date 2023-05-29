@@ -9,6 +9,7 @@ function Home() {
   const {data: products, status} = useSelector(state => state.product) 
   
   useEffect(()=>{
+    if(products.length > 0) return
     dispatch(fetchProductsWithThunks())
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
