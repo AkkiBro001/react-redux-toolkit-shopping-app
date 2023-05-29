@@ -3,14 +3,16 @@ import './App.css'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
+import { Provider } from 'react-redux'
+import Store from './store/Store'
 
 
 function App() {
 
 
   return (
-    <>
-      
+    
+      <Provider store={Store}>
         <BrowserRouter>
           <NavBar />
           <Routes>
@@ -18,8 +20,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
           </Routes>
         </BrowserRouter>
-      
-    </>
+      </Provider>
+    
   )
 }
 

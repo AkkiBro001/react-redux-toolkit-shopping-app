@@ -78,6 +78,14 @@ nav a:hover{
   cursor: pointer;
 }
 
+.card .cart_incre_decre, .cartCard .cart_incre_decre{
+  display: flex;
+  margin-block: 1em;
+  font-size: 1.3rem;
+  gap: 0.5em;
+  
+}
+
 .cartCard{
   display: flex;
   height: 150px;
@@ -94,9 +102,24 @@ nav a:hover{
   height: 100%;
 }
 
-.cartCard button{
+.cart_incre_decre button{
+  cursor: pointer;
+}
+
+.cartCard .removeBtn{
   margin-left: auto;
   padding: 1em 2em;
   cursor: pointer;
+}
+
+.totalCart{
+  margin-block: 2em;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-inline: auto;
+  border-top: 2px solid #ddd;
 }
 
