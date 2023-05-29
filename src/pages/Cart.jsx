@@ -27,10 +27,10 @@ function Cart() {
         
       </section>
 
-      {cartItems.length  && <section className="totalCart">
+      {cartItems.length ? <section className="totalCart">
           <h2>Total Quantity: {Quantity}</h2>
           <h2>Total: ${TotalPrice.toFixed(2)}</h2>
-      </section>}
+      </section> : null}
       
       </>
     )
