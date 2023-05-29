@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const STATUS = {
     IDEL: "idel",
@@ -12,14 +12,20 @@ const ProductSilcer = createSlice({
         data: [],
         status: STATUS.IDEL
     },
-    reducers: {
-        setProduct (state, action) {
-            state.data = action.payload
-        },
-
-        setStatus (state, action) {
-            state.status = action.payload
-        }
+    extraReducers: (builder) => {
+        builder
+        // eslint-disable-next-line no-unused-vars
+        .addCase(fetchProductsWithThunks.pending, (state, action) => {
+            state.status = STATUS.LOADING;
+        })
+        .addCase(fetchProductsWithThunks.fulfilled, (state, action) => {
+            state.data = action.payload;
+            state.status = STATUS.IDEL;
+        })
+        // eslint-disable-next-line no-unused-vars
+        .addCase(fetchProductsWithThunks.rejected, (state, action) => {
+            state.status = STATUS.ERROR;
+        })
     }
 })
 
@@ -27,18 +33,10 @@ export const {setProduct, setStatus} = ProductSilcer.actions;
 export default ProductSilcer.reducer;
 
 //Normal Thunks
-export function fetchProductsWithThunks () {
-    // eslint-disable-next-line no-unused-vars
-    return async function (dispatch, getState) {
-        dispatch(setStatus(STATUS.LOADING))
-        try{
-            const result = await fetch("https://fakestoreapi.com/products/")
-            const data = await result.json()
-            dispatch(setProduct(data))
-            dispatch(setStatus(STATUS.IDEL))
-        }catch(err){
-            console.log(err)
-            dispatch(setStatus(STATUS.ERROR))
-        }
-    }
-}
+export const fetchProductsWithThunks = createAsyncThunk("product/fetch", async function () {
+    const result = await fetch("https://fakestoreapi.com/products/");
+    const data = await result.json()
+    return data;
+})
+
+
